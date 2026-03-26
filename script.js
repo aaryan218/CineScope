@@ -15,12 +15,19 @@
    CONFIG
    ============================================================ */
 
-/** OMDb API key – replace with your own from https://www.omdbapi.com/apikey.aspx */
+/**
+ * OMDb API key – replace with your own key from https://www.omdbapi.com/apikey.aspx
+ * Note: OMDb API keys are free, public-facing credentials intended for client-side use.
+ * They are rate-limited by OMDb and do not grant access to private data.
+ */
 const API_KEY = '4a3b711b';
 const API_BASE = 'https://www.omdbapi.com/';
 
 /** How many milliseconds to wait after the last keystroke before searching */
 const DEBOUNCE_MS = 400;
+
+/** How many milliseconds to wait before fetching search suggestions */
+const SUGGEST_DEBOUNCE_MS = 250;
 
 /** Results per page (OMDb always returns 10 per page) */
 const RESULTS_PER_PAGE = 10;
@@ -634,7 +641,7 @@ const debouncedSearch = debounce((query) => {
 }, DEBOUNCE_MS);
 
 // Debounced suggestions handler (faster)
-const debouncedSuggest = debounce(fetchSuggestions, 250);
+const debouncedSuggest = debounce(fetchSuggestions, SUGGEST_DEBOUNCE_MS);
 
 searchInput.addEventListener('input', (e) => {
   const query = e.target.value.trim();
