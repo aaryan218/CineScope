@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CineScope – Movie Search</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="dark">
+
+  <!-- Header -->
+  <header class="header">
+    <div class="header__inner">
+      <a class="logo" href="#">🎬 CineScope</a>
+      <nav class="header__nav">
+        <button id="favBtn" class="btn btn--ghost" aria-label="Show favourites">
+          ❤️ Favourites
+          <span id="favCount" class="badge hidden">0</span>
+        </button>
+        <button id="themeToggle" class="btn btn--ghost icon-btn" aria-label="Toggle dark mode">
+          🌙
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero / Search -->
+  <section class="hero">
+    <h1 class="hero__title">Discover Movies</h1>
+    <p class="hero__sub">Search any title and explore cast, plot, ratings & more.</p>
+    <div class="search-wrap">
+      <div class="search-box">
+        <span class="search-icon">🔍</span>
+        <input
+          id="searchInput"
+          type="search"
+          class="search-input"
+          placeholder="Search movies, e.g. Inception…"
+          autocomplete="off"
+          aria-label="Search movies"
+        />
+        <button id="clearBtn" class="clear-btn hidden" aria-label="Clear search">✕</button>
+      </div>
+      <!-- Search suggestions dropdown -->
+      <ul id="suggestions" class="suggestions hidden" role="listbox" aria-label="Search suggestions"></ul>
+    </div>
+  </section>
+
+  <!-- Main content -->
+  <main class="main-content">
+
+    <!-- Status / error message -->
+    <div id="statusMsg" class="status-msg hidden" role="alert"></div>
+
+    <!-- Loading spinner -->
+    <div id="spinner" class="spinner hidden" aria-live="polite" aria-label="Loading">
+      <div class="spinner__ring"></div>
+      <span>Fetching movies…</span>
+    </div>
+
+    <!-- Results grid -->
+    <div id="resultsSection" class="results-section hidden">
+      <div class="results-header">
+        <h2 id="resultsTitle" class="results-title"></h2>
+        <div class="pagination" id="pagination"></div>
+      </div>
+      <div id="moviesGrid" class="movies-grid" role="list"></div>
+      <div class="pagination pagination--bottom" id="paginationBottom"></div>
+    </div>
+
+    <!-- Favourites panel -->
+    <section id="favsSection" class="favs-section hidden">
+      <h2 class="results-title">❤️ Your Favourites</h2>
+      <div id="favsGrid" class="movies-grid" role="list"></div>
+      <p id="favsEmpty" class="empty-msg hidden">No favourites yet. Click ❤️ on any movie card!</p>
+    </section>
+
+    <!-- Default / welcome state -->
+    <div id="welcomeState" class="welcome-state">
+      <div class="welcome-icon">🎥</div>
+      <p>Start typing to discover amazing movies.</p>
+    </div>
+
+  </main>
+
+  <!-- Movie detail modal -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal__backdrop"></div>
+    <div class="modal__panel">
+      <button id="modalClose" class="modal__close" aria-label="Close">✕</button>
+      <div id="modalContent" class="modal__content"></div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <p>Powered by <a href="https://www.omdbapi.com/" target="_blank" rel="noopener">OMDb API</a> · CineScope © 2025</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
