@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CineScope – Movie Search</title>
+    <link rel="stylesheet" href="style.css" />
+    <!-- Font Awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <!-- ===== HEADER ===== -->
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="logo" href="#" id="logo-link">
+          <i class="fa-solid fa-film"></i>
+          CineScope
+        </a>
+
+        <nav class="header-nav">
+          <button class="nav-btn active" id="btn-home" aria-label="Home">
+            <i class="fa-solid fa-house"></i>
+            <span>Home</span>
+          </button>
+          <button class="nav-btn" id="btn-favorites" aria-label="Favorites">
+            <i class="fa-solid fa-heart"></i>
+            <span>Favorites</span>
+            <span class="fav-count" id="fav-count" hidden>0</span>
+          </button>
+          <button class="icon-btn" id="theme-toggle" aria-label="Toggle dark/light mode">
+            <i class="fa-solid fa-moon" id="theme-icon"></i>
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <!-- ===== HERO / SEARCH ===== -->
+    <section class="hero">
+      <h1 class="hero-title">Discover Your Next Favorite Film</h1>
+      <p class="hero-sub">Search millions of movies, TV shows, and more.</p>
+
+      <div class="search-wrapper">
+        <label for="search-input" class="sr-only">Search movies</label>
+        <i class="fa-solid fa-magnifying-glass search-icon"></i>
+        <input
+          type="search"
+          id="search-input"
+          class="search-input"
+          placeholder="Search movies, TV shows…"
+          autocomplete="off"
+          spellcheck="false"
+        />
+        <button class="clear-btn" id="clear-btn" aria-label="Clear search" hidden>
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+        <!-- Suggestions dropdown -->
+        <ul class="suggestions" id="suggestions" role="listbox" aria-label="Search suggestions" hidden></ul>
+      </div>
+    </section>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content" id="main-content">
+
+      <!-- Status / error banner -->
+      <div class="status-bar" id="status-bar" hidden>
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span id="status-msg"></span>
+      </div>
+
+      <!-- Loading skeleton -->
+      <div class="loading-grid" id="loading-grid" hidden aria-live="polite" aria-label="Loading movies">
+        <div class="skeleton-card" aria-hidden="true"></div>
+        <div class="skeleton-card" aria-hidden="true"></div>
+        <div class="skeleton-card" aria-hidden="true"></div>
+        <div class="skeleton-card" aria-hidden="true"></div>
+        <div class="skeleton-card" aria-hidden="true"></div>
+        <div class="skeleton-card" aria-hidden="true"></div>
+      </div>
+
+      <!-- Section heading (search results / favorites) -->
+      <div class="section-header" id="section-header" hidden>
+        <h2 id="section-title"></h2>
+        <span id="result-count" class="result-count"></span>
+      </div>
+
+      <!-- Results grid -->
+      <div class="movies-grid" id="movies-grid" role="list"></div>
+
+      <!-- Pagination -->
+      <div class="pagination" id="pagination" hidden>
+        <button class="page-btn" id="btn-prev" aria-label="Previous page">
+          <i class="fa-solid fa-chevron-left"></i> Prev
+        </button>
+        <span class="page-info" id="page-info"></span>
+        <button class="page-btn" id="btn-next" aria-label="Next page">
+          Next <i class="fa-solid fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Empty / welcome state -->
+      <div class="empty-state" id="empty-state">
+        <i class="fa-solid fa-clapperboard empty-icon"></i>
+        <h2>Start Your Search</h2>
+        <p>Type a movie or show title above to explore the world of cinema.</p>
+      </div>
+
+    </main>
+
+    <!-- ===== MOVIE DETAIL MODAL ===== -->
+    <div class="modal-overlay" id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" hidden>
+      <div class="modal" id="modal">
+        <button class="modal-close" id="modal-close" aria-label="Close details">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+
+        <!-- Loading state inside modal -->
+        <div class="modal-loading" id="modal-loading" hidden>
+          <div class="spinner"></div>
+        </div>
+
+        <div class="modal-body" id="modal-body" hidden>
+          <img class="modal-poster" id="modal-poster" src="" alt="" />
+          <div class="modal-info">
+            <div class="modal-badges" id="modal-badges"></div>
+            <h2 class="modal-title" id="modal-title"></h2>
+            <div class="modal-meta" id="modal-meta"></div>
+            <p class="modal-plot" id="modal-plot"></p>
+            <div class="modal-ratings" id="modal-ratings"></div>
+            <div class="modal-details" id="modal-details"></div>
+            <button class="fav-btn" id="modal-fav-btn">
+              <i class="fa-solid fa-heart"></i>
+              <span id="modal-fav-label">Add to Favorites</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== TOAST NOTIFICATION ===== -->
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
